@@ -10,25 +10,22 @@ It makes it possible to search and browse historical tweets across a group of in
 
 ## Up and running:
 
-- python 3
-- put all the twitter handles in `data/handles.csv`
+- python 3 and make
 - `pip install -r requirements.txt`
-- go get a twitter API key
+- put all the twitter handles in `data/foo.csv` (replace the `foo`)
+- go get a [twitter API key](https://developer.twitter.com/en/apps)
 - copy `config_template.py` to `config.py` and modify per that API key
 
-- Run these things
-  - `python -m util.make_db` # make the database
-  - `python -m util.load_users` # load the users from `data/handles.csv`
-  - `python -m util.import_tweets` # import the tweets from those handles
+- Run this
+  - `make db=foo.db` (replace the `foo`)
 
 Tweet importing will take a long time, many hours or days depending on your list of people, their prolixity, etc.
 
 Run the app:
 
-- `python app.py`
+- `python app.py foo.db` (replace the `foo`)
 
 ## Notes
 
 - Works fine under `gunicorn`.
-- If you start to mess with itwhile the tweets are loading into SQLite it can skip tweets because SQLite wants none of that.
-
+- If you start to mess with it while the tweets are loading into SQLite it can skip tweets because SQLite wants none of that.

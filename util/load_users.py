@@ -3,7 +3,7 @@ import db
 import tweepy
 import config
 from time import sleep
-
+import sys
 
 class TwitterSearchClient(object):
     def __init__(self,
@@ -22,7 +22,8 @@ def __main__():
                                  config.TWITTER_ACCESS_TOKEN,
                                  config.TWITTER_ACCESS_TOKEN_SECRET)
 
-    with open('data/handles.csv', 'rt') as csvfile:
+    csv_file = sys.argv[1].replace('.db', '.csv')
+    with open('data/%s' % csv_file, 'rt') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             sleep(3)
@@ -30,7 +31,7 @@ def __main__():
             print("fetching for {}".format(screen_name,))
             user = client.client.get_user(screen_name=screen_name)
 
-            # get user 
+            # get user
             db.User.create(
                 screen_name=row[0],
                 real_name=user.name,

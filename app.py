@@ -2,6 +2,7 @@ from flask import *
 import nltk
 import db
 import re
+import sys, os
 
 
 # Start up our Flask app
@@ -86,4 +87,10 @@ def words():
 
 
 if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python app.py [database.db]")
+        sys.exit(1)
+    if not os.path.isfile('data/%s' % sys.argv[1]):
+        print("Not found: data/%s" % sys.argv[1])
+        sys.exit(1)
     app.run()

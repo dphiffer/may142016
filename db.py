@@ -2,8 +2,10 @@
 
 from peewee import Model, CharField, TextField, IntegerField, DateField
 from playhouse.sqlite_ext import SqliteExtDatabase, FTSModel
+import sys
 
-db = SqliteExtDatabase('db/rhizome.db',
+db_file = sys.argv[1]
+db = SqliteExtDatabase('data/%s' % db_file,
                        threadlocals=True)
 
 
